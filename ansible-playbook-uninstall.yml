@@ -1,0 +1,8 @@
+- name: pre-requisites of the machine
+  hosts: localhost
+  remote_user: coke
+  become: yes
+  include_role:
+    name: installation
+  var:
+    - action: "uninstall"
