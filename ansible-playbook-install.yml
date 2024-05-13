@@ -9,6 +9,6 @@
 
 - name: Run tasks/other.yaml instead of 'main'
   hosts: nodes
-  include_role:
-    name: installation
+  roles:
+    - installation
 
