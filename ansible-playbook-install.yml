@@ -10,5 +10,7 @@
 - name: Run tasks/other.yaml instead of 'main'
   hosts: nodes
   roles:
-    - installation
+    - requisites
+  vars:
+    action: "install"
 
