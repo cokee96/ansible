@@ -2,7 +2,7 @@
   hosts: nodes
   remote_user: coke
   become: yes
-  ansible.builtin.include_role:
+  include_role:
     name: installation
   vars:
     action: "install"
