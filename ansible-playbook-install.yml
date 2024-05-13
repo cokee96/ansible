@@ -6,4 +6,4 @@
   include_role:
     name: installation
   vars:
-    - action: "install"
+    action: "install"
