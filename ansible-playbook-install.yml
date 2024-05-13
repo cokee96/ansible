@@ -1,3 +1,4 @@
+---
 - name: pre-requisites of the machine
   hosts: localhost
   remote_user: coke
