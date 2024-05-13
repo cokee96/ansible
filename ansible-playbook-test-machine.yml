@@ -9,7 +9,7 @@
       msg: Hello world
 
   - name: Install prerequisites packages at the latest version
-    yum:
+    ansible.buitlin.yum:
       name: "{{item}}"
       state: "present"
     loop:
