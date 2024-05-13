@@ -8,18 +8,18 @@
      ansible.builtin.debug:
       msg: Hello world
 
-  - name: Install prerequisites packages at the latest version
-    ansible.buitlin.yum:
-      name: "{{item}}"
-      state: "present"
-    loop:
-      - httpd
-      - git
-      - python3
-      - python3-pip
-      - nodejs
-      - npm
-      - mysql-server
+  # - name: Install prerequisites packages at the latest version
+  #   yum:
+  #     name: "{{item}}"
+  #     state: "present"
+  #   loop:
+  #     - httpd
+  #     - git
+  #     - python3
+  #     - python3-pip
+  #     - nodejs
+  #     - npm
+  #     - mysql-server
 
   # - name: Start services after installation
   #   systemd_service:

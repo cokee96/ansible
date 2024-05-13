@@ -7,8 +7,7 @@
 #   vars:
 #     action: "install"
 
-- name: Pass variables to role
+- name: My first play
+  hosts: nodes
   include_role:
-    name: installation
-  # vars:
-  #   action: 'install'
+   - name: installation
