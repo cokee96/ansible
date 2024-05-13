@@ -1,0 +1,10 @@
+---
+- name: include installation options
+  include_tasks: installation.yml
+  when:
+    - action == "install"
+
+- name: include uninstallation options
+  include_tasks: uninstallation.yml
+  when:
+    - action == "uninstall"

@@ -1,0 +1,9 @@
+---
+- name: include installation packages
+  include_tasks: installation.yml
+
+- name: include web tasks
+  include_tasks: web.yml
+
+- name: include db tasks
+  include_tasks:  db.yml

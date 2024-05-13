@@ -1,0 +1,11 @@
+---
+- name: include installation options
+  include_tasks: deploy-nginx.yml
+  when:
+    - action == "deploy"
+
+- name: include uninstallation options
+  include_tasks: undeploy-nginx.yml
+  when:
+    - action == "undeploy"
+

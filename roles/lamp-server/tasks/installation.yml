@@ -1,0 +1,30 @@
+---
+- name: Install ntp
+  yum: 
+    name: ntp
+    tate: present
+
+- name: Install common dependencies
+  yum: 
+    name: {{ item }} 
+    state: installed
+  with_items:
+   - libselinux-python
+   - libsemanage-python
+   - firewalld
+
+- name: Configure ntp file
+  template: 
+    src: ntp.conf.j2 
+    dest: /etc/ntp.conf
+
+- name: Restart ntp
+  service: 
+    name: ntpd 
+    state: restarted
+
+- name: Start the ntp service
+  service: 
+    name: ntpd 
+    state: started 
+    enabled: yes

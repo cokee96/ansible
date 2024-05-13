@@ -1,0 +1,7 @@
+---
+- name: adeploy LAMP server
+  hosts: all
+  remote_user: coke
+  become: yes
+  roles:
+    - lamp-server

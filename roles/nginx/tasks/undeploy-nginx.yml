@@ -1,0 +1,10 @@
+---
+- name: Stop nginx service before uninstallation
+  systemd_service:
+    name: "nginx"
+    state: stopped
+
+- name: Uninstall prerequisites packages at the latest version
+  yum:
+    name: "nginx"
+    state: "absent"
