@@ -2,8 +2,8 @@
   hosts: nodes
   remote_user: coke
   become: yes
-  include_role:
-    name: installation
+  roles:
+    - requisites
   vars:
     action: "install"
 
