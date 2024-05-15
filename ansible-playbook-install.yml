@@ -1,16 +1,16 @@
-# - name: pre-requisites of the machine
-#   hosts: nodes
-#   remote_user: coke
-#   become: yes
-#   include_role:
-#     name: installation
-#   vars:
-#     action: "install"
-
-- name: Run tasks/other.yaml instead of 'main'
+- name: pre-requisites of the machine
   hosts: nodes
-  roles:
-    - requisites
+  remote_user: coke
+  become: yes
+  include_role:
+    name: installation
   vars:
     action: "install"
+
+# - name: Run tasks/other.yaml instead of 'main'
+#   hosts: nodes
+#   roles:
+#     - requisites
+#   vars:
+#     action: "install"
 
