@@ -12,13 +12,13 @@
     - npm
     - mysql-server
 
-- name: Start services after installation
-  ansible.builtin.systemd_service:
-    name: "{{item}}"
-    enabled: yes
-    state: started
-  loop:
-    - httpd
-    - nodejs
-    - npm
-    - mysql-server
+# - name: Start services after installation
+#   ansible.builtin.systemd_service:
+#     name: "{{item}}"
+#     enabled: yes
+#     state: started
+#   loop:
+#     - httpd
+#     - nodejs
+#     - npm
+#     - mysql-server
