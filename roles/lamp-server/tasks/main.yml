@@ -10,6 +10,6 @@
     - action == "web"
 
 - name: include db tasks
-  include_tasks:  db.yml
+  include_tasks: db.yml
   when:
     - action == "db"
