@@ -32,12 +32,6 @@
     regexp: '^(\s*root\s+/usr/share/nginx/html;)'
     line: '       root         /var/www/html/;'
 
-# - name: Enable default Nginx website
-#   file:
-#     src: /etc/nginx/sites-available/default
-#     path: /etc/nginx/sites-enabled/default
-#     state: link
-
 - name: Restart Nginx
   service:
     name: nginx

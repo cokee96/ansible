@@ -1,9 +1,15 @@
 ---
 - name: include installation packages
   include_tasks: installation.yml
+  when:
+    - action == "common"
 
 - name: include web tasks
   include_tasks: web.yml
+  when:
+    - action == "web"
 
 - name: include db tasks
   include_tasks:  db.yml
+  when:
+    - action == "db"

@@ -1,7 +1,27 @@
 ---
-- name: adeploy LAMP server
-  hosts: all
+- name: deploy common configuration
+  hosts: common
   remote_user: coke
   become: yes
   roles:
     - lamp-server
+  vars:
+    action: "common"
+
+- name: deploy common configuration
+  hosts: webservers
+  remote_user: coke
+  become: yes
+  roles:
+    - lamp-server
+  vars:
+    action: "web"
+
+- name: deploy common configuration
+  hosts: dbservers
+  remote_user: coke
+  become: yes
+  roles:
+    - lamp-server
+  vars:
+    action: "db"
