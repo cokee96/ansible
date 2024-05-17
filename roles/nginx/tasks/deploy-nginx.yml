@@ -14,14 +14,14 @@
 - name: Create "index.html" file with "hello world" content
   template:
     src: "index.html.j2"
-    dest: /var/www/html/hello-world/index.html
+    dest: /var/www/html/web-example/index.html
     mode: 0644
   vars:
     node: ansible_hostname
 
 - name: Copy "index.html" to default Nginx location
   copy:
-    src: /var/www/html/hello-world/index.html
+    src: /var/www/html/web-example/index.html
     dest: /var/www/html/index.html
     mode: 0644
     remote_src: true
