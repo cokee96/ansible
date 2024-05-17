@@ -53,3 +53,14 @@
     host: '%'
     state: present
 
+- name: Copy database dump file
+  copy:
+    src: "nodes_email.sql.j2"
+    dest: /tmp
+
+- name: Restore database
+  mysql_db:
+    name: "{{ dbname }}"
+    state: import
+    target: /tmp/nodes_email.sql.j2
+

@@ -7,13 +7,12 @@
         <p>Este es el nodo: {{ansible_hostname}}</p>
 <?php 
 echo  "List of databases: </BR>";
-        {% for host in groups['dbservers'] %}
-                $link = mysqli_connect('192.168.56.118', '{{ dbuser }}', '{{ upassword }}') or die(mysqli_connect_error($link));
-        {% endfor %}
-        $res = mysqli_query($link, "SHOW DATABASES;");
-        while ($row = mysqli_fetch_assoc($res)) {
-                echo $row['Database'] . "\n";
-        }
+$link = mysqli_connect('192.168.56.118', '{{ dbuser }}', '{{ upassword }}') or die(mysqli_connect_error($link));
+$res = mysqli_query($link, "SELCT * FROM '{{ dbname }}';");
+
+while ($row = mysqli_fetch_assoc($res)) {
+        echo $row['Database'] . "\n";
+}
 ?>
 </body>
 </html>
