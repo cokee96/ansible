@@ -38,7 +38,7 @@
 #     path: /etc/nginx/sites-enabled/default
 #     state: link
 
-# - name: Restart Nginx
-#   service:
-#     name: nginx
-#     state: restarted
+- name: Restart Nginx
+  service:
+    name: nginx
+    state: restarted
