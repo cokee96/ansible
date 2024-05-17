@@ -29,8 +29,8 @@
 - name: Declare correct path for the web
   lineinfile:
     path: /etc/nginx/nginx.conf
-    regexp: '^(.*\/)usr\/share\/nginx\/html(;.*)?$'
-    line: '\1var/www/html/\2'
+    regexp: '^(\s*root\s+/usr/share/nginx/html;)'
+    line: '       root         /var/www/html/;'
 
 # - name: Enable default Nginx website
 #   file:
@@ -38,7 +38,7 @@
 #     path: /etc/nginx/sites-enabled/default
 #     state: link
 
-- name: Restart Nginx
-  service:
-    name: nginx
-    state: restarted
+# - name: Restart Nginx
+#   service:
+#     name: nginx
+#     state: restarted
