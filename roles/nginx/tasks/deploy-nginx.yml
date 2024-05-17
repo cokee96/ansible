@@ -26,6 +26,12 @@
     mode: 0644
     remote_src: true
 
+- name: Declare correct path for the web
+  lineinfile:
+    path: /etc/nginx/nginx.conf
+    regexp: '^(.*\/)usr\/share\/nginx\/html(;.*)?$'
+    line: '\1var/www/html/\2'
+
 # - name: Enable default Nginx website
 #   file:
 #     src: /etc/nginx/sites-available/default
