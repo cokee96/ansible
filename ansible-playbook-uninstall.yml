@@ -2,7 +2,7 @@
   hosts: localhost
   remote_user: coke
   become: yes
-  include_role:
-    name: installation
+  role:
+    - installation
   var:
     - action: "uninstall"

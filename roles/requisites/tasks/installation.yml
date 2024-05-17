@@ -19,6 +19,6 @@
     state: started
   loop:
     - httpd
-    - nodejs
+    #- nodejs
     - npm
     #- mysql-server

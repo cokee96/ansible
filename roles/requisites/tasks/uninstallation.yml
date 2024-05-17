@@ -1,15 +1,14 @@
 ---
 # tasks file for web-servers
 - name: stop services before uninstallation
-  systemd_service:
+  service:
     name: "{{item}}"
     state: stopped
   loop:
     - httpd
-    - nodejs
+    #- nodejs
     - npm
-    - mysql-server
-  when: inst == "absent"
+    #- mysql-server
 
 - name: Install prerequisites packages at the latest version
   yum:
@@ -22,7 +21,7 @@
     - python3-pip
     - nodejs
     - npm
-    - mysql-server
+    #- mysql-server
 
 
 
