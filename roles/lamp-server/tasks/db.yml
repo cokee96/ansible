@@ -54,9 +54,10 @@
     state: present
 
 - name: Copy database dump file
-  copy:
+  template:
     src: "nodes_email.sql.j2"
     dest: /tmp
+    mode: 0644
 
 - name: Restore database
   mysql_db:
