@@ -7,4 +7,4 @@ mysqlservice: mysqld
 mysql_port: 3306
 dbuser: coke
 dbname: noeds_email
-upassword: 658078381
+upassword: '658078381'
