@@ -1,8 +1,8 @@
 - name: pre-requisites of the machine
-  hosts: localhost
+  hosts: nodes
   remote_user: coke
   become: yes
-  role:
-    - installation
-  var:
-    - action: "uninstall"
+  roles:
+    - requisites
+  vars:
+    action: "uninstall"
