@@ -20,5 +20,5 @@
   loop:
     - httpd
     #- nodejs
-    - npm
+    #- npm
     #- mysql-server

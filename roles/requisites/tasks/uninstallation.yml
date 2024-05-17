@@ -7,7 +7,7 @@
   loop:
     - httpd
     #- nodejs
-    - npm
+    #- npm
     #- mysql-server
 
 - name: Install prerequisites packages at the latest version
