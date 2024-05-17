@@ -8,3 +8,18 @@
   yum:
     name: "nginx"
     state: "absent"
+
+- name: Delete directory for static content
+  file:
+    path: /var/www/html/web-example
+    state: absent
+
+- name: Delete "index.html" file with "hello world" content
+  file:
+    path: /var/www/html/hello-world/index.html
+    state: absent
+
+- name: Delete "index.html" in default Nginx location
+  file:
+    path: /var/www/html/index.html
+    state: absent

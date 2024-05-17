@@ -10,7 +10,7 @@
     #- npm
     #- mysql-server
 
-- name: Install prerequisites packages at the latest version
+- name: Uninstall prerequisites packages
   yum:
     name: "{{item}}"
     state: "absent"

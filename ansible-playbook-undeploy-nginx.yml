@@ -1,0 +1,10 @@
+- name: undeploy nginx server
+  hosts: nodes
+  remote_user: coke
+  become: yes
+  roles:
+    - nginx
+  vars:
+    action: "undeploy"
+
+
