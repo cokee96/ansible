@@ -16,8 +16,8 @@
     src: "index.html.j2"
     dest: /var/www/html/hello-world/index.html
     mode: 0644
-  var:
-    - node: ansible_hostname
+  vars:
+    node: ansible_hostname
 
 - name: Copy "index.html" to default Nginx location
   copy:
