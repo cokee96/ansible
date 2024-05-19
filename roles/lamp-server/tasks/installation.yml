@@ -1,9 +1,4 @@
 ---
-# - name: Install ntp
-#   yum: 
-#     name: ntp
-#     tate: present
-
 - name: Install dependencies
   yum: 
     name: "{{ item }}" 
@@ -11,20 +6,3 @@
   loop:
    - libselinux-python
    - libsemanage-python
-#    - firewalld
-
-# - name: Configure ntp file
-#   template: 
-#     src: ntp.conf.j2 
-#     dest: /etc/ntp.conf
-
-# - name: Restart ntp
-#   service: 
-#     name: ntpd 
-#     state: restarted
-
-# - name: Start the ntp service
-#   service: 
-#     name: ntpd 
-#     state: started 
-#     enabled: yes
