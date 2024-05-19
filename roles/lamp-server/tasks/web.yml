@@ -32,6 +32,7 @@
   git: 
     repo: "{{ automation_repository }}" 
     dest: /var/www/html/
+    force: yes
 
 # - name: Creates the index.php file
 #   template: 
