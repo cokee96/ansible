@@ -10,7 +10,6 @@
     - python3-pip
     - nodejs
     - npm
-    #- mysql-server
 
 - name: Start services after installation
   service:
@@ -19,6 +18,3 @@
     state: started
   loop:
     - httpd
-    #- nodejs
-    #- npm
-    #- mysql-server
