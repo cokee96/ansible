@@ -1,0 +1,44 @@
+- name: Stop MariaDB Service
+  service:
+    name: mariadb
+    state: stopped
+    enabled: no
+
+- name: Remove Application DB User
+  mysql_user:
+    name: "{{ dbuser }}"
+    state: absent
+
+- name: Remove Application Database
+  mysql_db:
+    name: "{{ dbname }}"
+    state: absent
+
+- name: Remove database dump file
+  file:
+    path: /tmp/nodes_email.sql.j2
+    state: absent
+
+- name: Delete MariaDB PID directory
+  file:
+    path: /var/run/mysqld
+    state: absent
+
+- name: Delete MariaDB log file
+  file:
+    path: /var/log/mysqld.log
+    state: absent
+
+- name: Set SELinux to deny mysql to start on any port
+  seboolean:
+    name: mysql_connect_any
+    state: false
+    persistent: yes
+
+- name: Remove MariaDB package
+  yum:
+    name: "{{ item }}"
+    state: absent
+  loop:
+    - mariadb-server
+    - MySQL-python

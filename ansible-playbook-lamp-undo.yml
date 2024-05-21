@@ -1,0 +1,18 @@
+---
+- name: deploy common configuration
+  hosts: webservers
+  remote_user: coke
+  become: yes
+  roles:
+    - lamp-server
+  vars:
+    action: "undo_web"
+
+- name: deploy common configuration
+  hosts: dbservers
+  remote_user: coke
+  become: yes
+  roles:
+    - lamp-server
+  vars:
+    action: "undo_db"

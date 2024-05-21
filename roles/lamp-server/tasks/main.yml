@@ -13,3 +13,13 @@
   include_tasks: db.yml
   when:
     - action == "db"
+
+- name: include undo web tasks
+  include_tasks: web.yml
+  when:
+    - action == "undo_web"
+
+- name: include undo db tasks
+  include_tasks: db.yml
+  when:
+    - action == "undo_db"

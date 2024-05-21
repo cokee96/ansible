@@ -1,0 +1,29 @@
+# tasks file for reversing web-servers setup
+
+- name: Remove the code copied from repository
+  file:
+    path: /var/www/html/
+    state: absent
+    recurse: true
+
+- name: Disable and stop httpd service
+  service:
+    name: httpd
+    state: stopped
+    enabled: no
+
+- name: Set SELinux to deny httpd to connect to remote database
+  seboolean:
+    name: httpd_can_network_connect_db
+    state: false
+    persistent: yes
+
+- name: Remove web role specific dependencies
+  yum:
+    name: "{{ item }}"
+    state: absent
+  loop:
+    - git
+    - httpd
+    - php
+    - php-mysql
