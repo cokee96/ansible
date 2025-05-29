@@ -1,17 +1,42 @@
+# tasks file for reversing LAMP server setup
+
+# === DATABASE CLEANUP FIRST ===
+
+- name: Remove Application DB User
+  mysql_user:
+    name: "{{ dbuser }}"
+    state: absent
+  vars:
+    login_user: root
+    # login_password: tu_password  # Descomenta si no usas ~/.my.cnf
+
+- name: Remove Application Database
+  mysql_db:
+    name: "{{ dbname }}"
+    state: absent
+  vars:
+    login_user: root
+    # login_password: tu_password
+
+# === DETENER SERVICIOS ===
+
 - name: Stop MariaDB Service
   service:
     name: mariadb
     state: stopped
     enabled: no
 
-- name: Remove Application DB User
-  mysql_user:
-    name: "{{ dbuser }}"
-    state: absent
+- name: Disable and stop HTTPD service
+  service:
+    name: httpd
+    state: stopped
+    enabled: no
 
-- name: Remove Application Database
-  mysql_db:
-    name: "{{ dbname }}"
+# === ELIMINAR ARCHIVOS Y CONFIGURACIONES ===
+
+- name: Remove the code copied from repository
+  file:
+    path: /var/www/html/
     state: absent
 
 - name: Remove database dump file
@@ -29,16 +54,30 @@
     path: /var/log/mysqld.log
     state: absent
 
+# === CONFIGURACIONES DE SELINUX ===
+
+- name: Set SELinux to deny httpd to connect to remote database
+  seboolean:
+    name: httpd_can_network_connect_db
+    state: false
+    persistent: yes
+
 - name: Set SELinux to deny mysql to start on any port
   seboolean:
     name: mysql_connect_any
     state: false
     persistent: yes
 
-- name: Remove MariaDB package
+# === ELIMINAR PAQUETES ===
+
+- name: Remove web and DB dependencies
   yum:
     name: "{{ item }}"
     state: absent
   loop:
+    - git
+    - httpd
+    - php
+    - php-mysql
     - mariadb-server
     - MySQL-python
