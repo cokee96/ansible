@@ -5,12 +5,12 @@
     path: /var/www/html/
     state: absent
 
-
 - name: Disable and stop httpd service
   service:
     name: httpd
     state: stopped
     enabled: no
+  ignore_errors: true
 
 - name: Set SELinux to deny httpd to connect to remote database
   seboolean:
