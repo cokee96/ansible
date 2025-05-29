@@ -1,3 +1,10 @@
+# === ASEGURAR QUE MariaDB ESTÁ CORRIENDO PARA PODER CONECTAR ===
+- name: Start MariaDB Service (to allow DB modifications)
+  service:
+    name: mariadb
+    state: started
+    enabled: yes
+
 # === LIMPIEZA DE BASE DE DATOS ===
 
 - name: Remove Application DB User
