@@ -9,6 +9,7 @@
     #- nodejs
     #- npm
     #- mysql-server
+  ignore_errors: true
 
 - name: Uninstall prerequisites packages
   yum:
