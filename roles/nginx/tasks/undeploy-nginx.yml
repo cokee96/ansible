@@ -3,6 +3,7 @@
   service:
     name: nginx
     state: stopped
+  ignore_errors: true
 
 - name: Uninstall prerequisites packages at the latest version
   yum:
