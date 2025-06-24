@@ -1,17 +1,25 @@
 # === ASEGURAR DEPENDENCIAS NECESARIAS PARA MÓDULO SEBOOLEAN ===
-- name: Ensure libsemanage is installed for seboolean module
+- name: Ensure SELinux Python libs are installed (CentOS/RHEL 7)
   package:
-    name: python3-libsemanage
+    name: policycoreutils-python
     state: present
+  when: ansible_distribution_major_version == "7"
+  ignore_errors: yes
+
+- name: Ensure SELinux Python libs are installed (CentOS/RHEL 8+)
+  package:
+    name: policycoreutils-python-utils
+    state: present
+  when: ansible_distribution_major_version is version('8', '>=')
+  ignore_errors: yes
 
 # === LIMPIEZA DE SERVIDOR WEB ===
-
 - name: Remove the code copied from repository
   file:
     path: /var/www/html/
     state: absent
 
-- name: Disable and stop httpd service
+- name: Disable and stop httpd service 
   service:
     name: httpd
     state: stopped
@@ -23,6 +31,7 @@
     name: httpd_can_network_connect_db
     state: false
     persistent: yes
+  ignore_errors: yes
 
 - name: Remove web role specific dependencies
   yum:
