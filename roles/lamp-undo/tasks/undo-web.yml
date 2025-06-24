@@ -1,0 +1,35 @@
+# === ASEGURAR DEPENDENCIAS NECESARIAS PARA MÓDULO SEBOOLEAN ===
+- name: Ensure libsemanage is installed for seboolean module
+  package:
+    name: python3-libsemanage
+    state: present
+
+# === LIMPIEZA DE SERVIDOR WEB ===
+
+- name: Remove the code copied from repository
+  file:
+    path: /var/www/html/
+    state: absent
+
+- name: Disable and stop httpd service
+  service:
+    name: httpd
+    state: stopped
+    enabled: no
+  ignore_errors: true
+
+- name: Set SELinux to deny httpd to connect to remote database
+  seboolean:
+    name: httpd_can_network_connect_db
+    state: false
+    persistent: yes
+
+- name: Remove web role specific dependencies
+  yum:
+    name: "{{ item }}"
+    state: absent
+  loop:
+    - git
+    - httpd
+    - php
+    - php-mysql

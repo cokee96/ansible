@@ -1,0 +1,8 @@
+---
+- name: Install dependencies
+  yum: 
+    name: "{{ item }}" 
+    state: installed
+  loop:
+   - libselinux-python
+   - libsemanage-python

@@ -1,0 +1,8 @@
+---
+httpd_port: 80
+automation_repository: https://github.com/cokee96/automation-web-page.git
+mysqlservice: mysqld
+mysql_port: 3306
+dbuser: coke
+dbname: nodes_email
+upassword: '658078381'

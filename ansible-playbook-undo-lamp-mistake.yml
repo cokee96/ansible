@@ -4,7 +4,7 @@
   remote_user: coke
   become: yes
   roles:
-    - lamp-server
+    - lamp-undo
   vars:
     action: "undo_web"
 
@@ -13,6 +13,6 @@
   remote_user: coke
   become: yes
   roles:
-    - lamp-server
+    - lamp-undo
   vars:
     action: "undo_db"
