@@ -1,59 +1,59 @@
-# === ASEGURAR DEPENDENCIAS NECESARIAS PARA MÓDULOS DE MYSQL ===
+---
 - name: Ensure PyMySQL is installed for Ansible MySQL modules
-  package:
-    name: python3-PyMySQL
-    state: present
+  pip:
+    name: PyMySQL
+    executable: pip3
 
-# === ASEGURAR QUE MariaDB ESTÁ CORRIENDO PARA PODER CONECTAR ===
 - name: Start MariaDB Service (to allow DB modifications)
   service:
     name: mariadb
     state: started
     enabled: yes
-
-# === LIMPIEZA DE BASE DE DATOS ===
+  ignore_errors: yes
 
 - name: Remove Application DB User
-  mysql_user:
-    name: "{{ dbuser }}"
+  community.mysql.mysql_user:
+    name: lamp_user
+    host: "%"
     state: absent
+    login_user: root
+    login_password: root
+  ignore_errors: yes
 
 - name: Remove Application Database
-  mysql_db:
-    name: "{{ dbname }}"
+  community.mysql.mysql_db:
+    name: lamp_db
     state: absent
-
-# === DETENER SERVICIO ===
+    login_user: root
+    login_password: root
+  ignore_errors: yes
 
 - name: Stop MariaDB Service
   service:
     name: mariadb
     state: stopped
-    enabled: no
-
-# === BORRADO DE ARCHIVOS RELACIONADOS ===
+  ignore_errors: yes
 
 - name: Remove database dump file
   file:
-    path: /tmp/nodes_email.sql.j2
+    path: /tmp/dump.sql
     state: absent
 
 - name: Delete MariaDB PID directory
   file:
-    path: /var/run/mysqld
+    path: /var/run/mariadb
     state: absent
 
 - name: Delete MariaDB log file
   file:
-    path: /var/log/mysqld.log
+    path: /var/log/mariadb/mariadb.log
     state: absent
 
-# === ELIMINACIÓN DE PAQUETES ===
-
 - name: Remove MariaDB package
-  yum:
+  package:
     name: "{{ item }}"
     state: absent
   loop:
     - mariadb-server
     - MySQL-python
+  ignore_errors: yes

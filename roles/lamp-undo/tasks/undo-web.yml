@@ -1,40 +1,36 @@
-# === ASEGURAR DEPENDENCIAS NECESARIAS PARA MÓDULO SEBOOLEAN ===
+---
 - name: Ensure SELinux Python libs are installed (CentOS/RHEL 7)
   package:
-    name: policycoreutils-python
+    name: libsemanage-python
     state: present
-  when: ansible_distribution_major_version == "7"
-  ignore_errors: yes
+  when: ansible_distribution_major_version | int == 7
 
 - name: Ensure SELinux Python libs are installed (CentOS/RHEL 8+)
   package:
-    name: policycoreutils-python-utils
+    name: python3-libsemanage
     state: present
-  when: ansible_distribution_major_version is version('8', '>=')
-  ignore_errors: yes
+  when: ansible_distribution_major_version | int >= 8
 
-# === LIMPIEZA DE SERVIDOR WEB ===
 - name: Remove the code copied from repository
   file:
-    path: /var/www/html/
+    path: /var/www/html
     state: absent
 
-- name: Disable and stop httpd service 
+- name: Disable and stop httpd service
   service:
     name: httpd
     state: stopped
     enabled: no
-  ignore_errors: true
+  ignore_errors: yes
 
 - name: Set SELinux to deny httpd to connect to remote database
   seboolean:
     name: httpd_can_network_connect_db
     state: false
     persistent: yes
-  ignore_errors: yes
 
 - name: Remove web role specific dependencies
-  yum:
+  package:
     name: "{{ item }}"
     state: absent
   loop:
@@ -42,3 +38,4 @@
     - httpd
     - php
     - php-mysql
+  ignore_errors: yes
