@@ -1,16 +1,16 @@
 ---
 # tasks/main.yml
-- name: include installation packages
-  import_tasks: install-packages.yml
-  when: false  # Desactivado para rollback, mantener por si se reutiliza
+# - name: include installation packages
+#   import_tasks: install-packages.yml
+#   when: false  # Desactivado para rollback, mantener por si se reutiliza
 
-- name: include web tasks
-  import_tasks: web.yml
-  when: false
+# - name: include web tasks
+#   import_tasks: web.yml
+#   when: false
 
-- name: include db tasks
-  import_tasks: db.yml
-  when: false
+# - name: include db tasks
+#   import_tasks: db.yml
+#   when: false
 
 - name: include undo web tasks
   import_tasks: undo-web.yml
