@@ -4,7 +4,7 @@
   remote_user: coke
   become: yes
   roles:
-    - lamp-server
+    - lamp-server-time
   vars:
     action: "common"
 
@@ -13,7 +13,7 @@
   remote_user: coke
   become: yes
   roles:
-    - lamp-server
+    - lamp-server-time
   vars:
     action: "web"
 
@@ -22,6 +22,6 @@
   remote_user: coke
   become: yes
   roles:
-    - lamp-server
+    - lamp-server-time
   vars:
     action: "db"
