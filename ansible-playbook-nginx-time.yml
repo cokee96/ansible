@@ -1,0 +1,8 @@
+- name: deploy nginx server
+  hosts: nodes
+  remote_user: coke
+  become: yes
+  roles:
+    - nginx
+  vars:
+    action: "deploy"

@@ -1,0 +1,6 @@
+- name: pre-requisites of the machine
+  hosts: nodes
+  remote_user: coke
+  become: yes
+  roles:
+    - requisites-time
