@@ -3,6 +3,6 @@
   remote_user: coke
   become: yes
   roles:
-    - nginx
+    - nginx-time
   vars:
     action: "deploy"
