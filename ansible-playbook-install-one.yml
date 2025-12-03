@@ -1,0 +1,16 @@
+- name: pre-requisites of the machine
+  hosts: one
+  remote_user: coke
+  become: yes
+  roles:
+    - requisites
+  vars:
+    action: "install"
+
+# - name: Run tasks/other.yaml instead of 'main'
+#   hosts: nodes
+#   roles:
+#     - requisites
+#   vars:
+#     action: "install"
+
